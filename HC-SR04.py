@@ -8,9 +8,9 @@ GPIO.setmode(GPIO.BCM)
 
  
 
-echo =15 
+echo =20 
 
-trig =14 
+trig =16 
 
  
 
@@ -26,7 +26,7 @@ try:
 
         GPIO.output(trig, False) 
 
-        time.sleep(2) 
+        time.sleep(0.5) 
 
  
 
@@ -43,7 +43,6 @@ try:
         while GPIO.input(echo)==0: 
 
             pulseStart = time.time()
-            print("Test")
 
  
 

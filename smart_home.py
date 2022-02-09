@@ -72,7 +72,8 @@ try: #Interrupts loop if except is triggered.
             time.sleep(5) #Keep the door(yellow LED), open for five seconds.
             GPIO.output(yellow, False) #Locks the door.
             
-            #Keeps the lights indoors(red LED) on until owner leaves and presses the key.
+            #Keeps the l
+            # ights indoors(red LED) on until owner leaves and presses the key.
             key = GPIO.input(button)
             while key == False: #Light is on while owner is indoors. Welcome home!
                 GPIO.output(red, True)
