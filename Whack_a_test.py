@@ -79,7 +79,7 @@ try:
         unpredictability = time2
         unpredictability = random.randint(unpredictability - stopwatchResult / 7, unpredictability + stopwatchResult / 7)
 
-        while timer(time1) <= timer(time2) and pointValid == True:
+        while timer(time1) <= timer(unpredictability) and pointValid == True:
             time1 = time.time()
 
             if GPIO.input(buttons[currentTest]) == True:
