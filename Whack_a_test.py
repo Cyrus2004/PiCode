@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO 
 import time 
 import random
-import I2C_LCD_driver
 
 timerCondition = 0
 def timer():
@@ -9,6 +8,7 @@ def timer():
     global time2
     global stopwatch
     global stopwatchResult
+    global timerCondition
 
     stopwatch = time.time()
     if timerCondition == 0:
@@ -48,8 +48,6 @@ tests = [led1, led2, led3, led4, led5]
 
 #Buttons for the RNG.
 buttons = [button1, button2, button3, button4, button5]
-
-mylcd = I2C_LCD_driver.lcd()
 
 
 GPIO.setup(led1, GPIO.OUT) 
