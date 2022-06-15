@@ -70,8 +70,22 @@ testCount = len(tests)
 
 try: 
     while True: 
-        currentTest = random.randint(0, testCount) #Currently active test.
+        
+        #Makes shure the same test isn't repeated.
+        testValid = False
+        currentTestMemory = 0
+        while testValid == False:
+            global currentTest
+            currentTest = random.randint(0, testCount) #Currently active test.
+            if not currentTest == currentTestMemory:
+                testValid = True
+
+        currentTestMemory = currentTest
+        
         GPIO.output(tests[currentTest], True)
+
+        global pointCount
+        pointCount = 0 #Used to calculate your grade.
 
         pointValid = True #Condition for if a point is gained or not.
         
@@ -85,8 +99,14 @@ try:
             if GPIO.input(buttons[currentTest]) == True:
                 points = points + 1
                 pointValid == False
-            
+        pointCount = pointCount + 1
         
+        
+        if stopwatchResult <= 0.2:
+            break
+            
+    grade = points / pointCount * 6
+    print(grade)
 
 
  
