@@ -4,8 +4,8 @@ import time
 
 GPIO.setmode(GPIO.BCM) 
 
-echo =20 
-trig =16
+echo = 20 
+trig = 16
 
 mylcd = I2C_LCD_driver.lcd()
 
