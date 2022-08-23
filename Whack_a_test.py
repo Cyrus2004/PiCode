@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO 
 import time 
 import random
-import I2C_LCD_driver
 
 timerCondition = 0
 def timer():
@@ -9,6 +8,7 @@ def timer():
     global time2
     global stopwatch
     global stopwatchResult
+    global timerCondition
 
     stopwatch = time.time()
     if timerCondition == 0:
@@ -49,8 +49,6 @@ tests = [led1, led2, led3, led4, led5]
 #Buttons for the RNG.
 buttons = [button1, button2, button3, button4, button5]
 
-mylcd = I2C_LCD_driver.lcd()
-
 
 GPIO.setup(led1, GPIO.OUT) 
 GPIO.setup(led2, GPIO.OUT)
@@ -70,8 +68,22 @@ testCount = len(tests)
 
 try: 
     while True: 
-        currentTest = random.randint(0, testCount) #Currently active test.
+        
+        #Makes shure the same test isn't repeated.
+        testValid = False
+        currentTestMemory = 0
+        while testValid == False:
+            global currentTest
+            currentTest = random.randint(0, testCount) #Currently active test.
+            if not currentTest == currentTestMemory:
+                testValid = True
+
+        currentTestMemory = currentTest
+        
         GPIO.output(tests[currentTest], True)
+
+        global pointCount
+        pointCount = 0 #Used to calculate your grade.
 
         pointValid = True #Condition for if a point is gained or not.
         
@@ -85,8 +97,14 @@ try:
             if GPIO.input(buttons[currentTest]) == True:
                 points = points + 1
                 pointValid == False
-            
+        pointCount = pointCount + 1
         
+        
+        if stopwatchResult <= 0.2:
+            break
+            
+    grade = points / pointCount * 6
+    print(grade)
 
 
  
