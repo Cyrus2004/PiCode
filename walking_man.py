@@ -42,7 +42,7 @@ shape1Shapes = [
 
 shape2Colors = ["green",
     "blue",
-    "green"
+    "black"
 ]
 
 shape2Shapes = [
@@ -55,7 +55,7 @@ shape1 = Shape(shape1Colors, shape1Shapes)
 shape1.goto(-100, 0)
 shape1.animate()
 
-shape2 = Shape(shape1Colors, shape1Shapes)
+shape2 = Shape(shape2Colors, shape2Shapes)
 shape2.goto(100, 0)
 shape2.animate()
 
