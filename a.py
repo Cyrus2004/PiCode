@@ -38,6 +38,10 @@ while True:
     
     #Calculates "/" and "*" before "+" and "-".
 
+    #Store the current number in the operation
+    #When i is an operator, store the operator type and indikate that i is on the second half of an operation.
+    #If the next operator i is, is plus or minus, or if end at list, store the entire operation in the /-list if operation is /, and in the *-list if operation is *. Indikate that i is on the first half of an operation, because a new operation has started. Repeat to step 1 unless at end of list.
+
     #Stores divisions and multiplications. Each item in the lists are plused or minused with each other.
     plusThese = []
     divideMinusThese = []
